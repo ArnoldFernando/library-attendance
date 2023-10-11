@@ -12,3 +12,13 @@ function open_session($student_id)
   $stmt->execute();
 }
 
+function close_session($student_id)
+{
+  require('./inc/dbconn/dbconn.php');
+  $currentDateTime = date('Y-m-d H:i:s'); //fix
+  $sql = "SELECT * FROM tbl_sessions WHERE student_id = :student_id AND validity = true";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':student_id', $student_id, PDO::PARAM_STR);
+  $stmt->execute();
+  $session = $stmt->fetch(PDO::FETCH_ASSOC);
+
