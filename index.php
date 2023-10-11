@@ -1,6 +1,15 @@
 <?php
 require('./inc/dbconn/dbconn.php');
 
+function get_active_session_by_student_id($student_id)
+{
+  require('./inc/dbconn/dbconn.php');
+  $sql = "SELECT * FROM tbl_sessions WHERE student_id = :student_id AND validity = true";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':student_id', $student_id, PDO::PARAM_STR);
+  $stmt->execute();
+  return $stmt->fetch(PDO::FETCH_ASSOC) ?? null;
+}
   <form method="post">
     <label for="student_id">Enter Student ID:</label>
     <input type="text" name="student_id" id="student_id" placeholder="e.g., S001">
