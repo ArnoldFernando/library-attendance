@@ -32,3 +32,11 @@ function close_session($student_id)
     $stmt->bindParam(':session_id', $session['session_id'], PDO::PARAM_STR);
     $stmt->execute();
 
+    $sql_close_validity = "UPDATE tbl_sessions SET validity = false WHERE session_id = :session_id";
+    $stmt = $pdo->prepare($sql_close_validity);
+    $stmt->bindParam(':session_id', $session['session_id'], PDO::PARAM_STR);
+    $stmt->execute();
+
+    $sql_calculate = "UPDATE tbl_sessions SET total_minutes = TIME_TO_SEC(TIMEDIFF(time_out, time_in)) / 60;";
+    $stmt = $pdo->prepare($sql_calculate);
+    $stmt->execute();
