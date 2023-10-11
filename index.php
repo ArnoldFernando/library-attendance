@@ -14,3 +14,7 @@ require('./inc/dbconn/dbconn.php');
       $stmt->bindParam(':student_id', $search_id, PDO::PARAM_STR);
       $stmt->execute();
       $student = $stmt->fetch(PDO::FETCH_ASSOC);
+        $time_in_button = !get_active_session_by_student_id($_POST['student_id']) ? '<button type="submit" name="time_in">Time In</button>' : '<button disabled type="submit" name="time_in">Time In</button>';
+
+        $time_out_button = !get_active_session_by_student_id($_POST['student_id']) ? '<button disabled type="submit" name="time_out">Time Out</button>' : '<button type="submit" name="time_out">Time Out</button>';
+
