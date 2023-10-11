@@ -71,6 +71,25 @@ function get_active_session_by_student_id($student_id)
           </td>
         </tr>
       </table>
+    $sql = "SELECT * FROM tbl_students LIMIT 10;";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    while ($students = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    ?>
+      <table border='1'>
+        <tr>
+          <th>Student ID</th>
+          <th>Last Name</th>
+          <th>First Name</th>
+        </tr>
+        <tr>
+          <td><?= $students['student_id'] ?></td>
+          <td><?= $students['last_name'] ?></td>
+          <td><?= $students['first_name'] ?></td>
+        </tr>
+      </table>
+
   <?php
     }
   } catch (PDOException $e) {
