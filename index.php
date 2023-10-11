@@ -23,7 +23,7 @@ function get_active_session_by_student_id($student_id)
 </head>
 
 <body>
-  <h1>Welcome</h1>
+  <h1>Library Attendance</h1>
   <form method="post">
     <label for="student_id">Enter Student ID:</label>
     <input type="text" name="student_id" id="student_id" placeholder="e.g., S001">
