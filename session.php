@@ -22,3 +22,13 @@ function close_session($student_id)
   $stmt->execute();
   $session = $stmt->fetch(PDO::FETCH_ASSOC);
 
+  if ($session) {
+    var_dump($session);
+
+    // setting session timeout
+    $sql_time_out = "UPDATE tbl_sessions SET time_out = :time_out WHERE session_id = :session_id ";
+    $stmt = $pdo->prepare($sql_time_out);
+    $stmt->bindParam(':time_out', $currentDateTime, PDO::PARAM_STR);
+    $stmt->bindParam(':session_id', $session['session_id'], PDO::PARAM_STR);
+    $stmt->execute();
+
