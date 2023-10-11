@@ -27,8 +27,10 @@ function get_active_session_by_student_id($student_id)
   <form method="post">
     <label for="student_id">Enter Student ID:</label>
     <input type="text" name="student_id" id="student_id" placeholder="e.g., S001">
-    <input type="submit" name="search" value="Search">
+    <input type="submit" name="search" value="Search" required>
   </form>
+  <br><br><br>
+  <hr>
 
   <?php
   try {
@@ -49,10 +51,6 @@ function get_active_session_by_student_id($student_id)
         </tr>
 
         <?php
-
-        // echo "<hr>";
-        // echo var_dump(get_active_session_by_student_id($_POST['student_id']));
-        // echo "<hr>";
         $time_in_button = !get_active_session_by_student_id($_POST['student_id']) ? '<button type="submit" name="time_in">Time In</button>' : '<button disabled type="submit" name="time_in">Time In</button>';
 
         $time_out_button = !get_active_session_by_student_id($_POST['student_id']) ? '<button disabled type="submit" name="time_out">Time Out</button>' : '<button type="submit" name="time_out">Time Out</button>';
@@ -71,6 +69,12 @@ function get_active_session_by_student_id($student_id)
           </td>
         </tr>
       </table>
+      <br><br>
+      <hr><br><br>
+    <?php
+    }
+
+
     $sql = "SELECT * FROM tbl_students LIMIT 10;";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
@@ -99,9 +103,3 @@ function get_active_session_by_student_id($student_id)
 </body>
 
 </html>
-
-<!-- 
-
-  when I click "time in" button, I want to create a session with that student_id
-  
--->
