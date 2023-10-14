@@ -32,11 +32,12 @@ startSystem();
   try {
     if (isset($_POST['search'])) {
       $search_id = $_POST['student_id'];
-      $sql = "SELECT * FROM tbl_students WHERE student_id = :student_id";
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':student_id', $search_id, PDO::PARAM_STR);
-      $stmt->execute();
-      $student = $stmt->fetch(PDO::FETCH_ASSOC);
+      $student = getOneById($search_id);
+      if (!$student) {
+  ?>
+        <h1>no student found!</h1>
+      <?php
+      } else {
   ?>
       <table border='1'>
         <tr>
