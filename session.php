@@ -49,6 +49,16 @@ function close_session($student_id)
     $stmt->execute();
   }
 }
+function invalidateSessionsAt($closing_time)
+{
+  require('./inc/dbconn/db-library.conn.php');
+
+  if (date('H:') >= $closing_time) {
+    $sql_invalidate_sessions = "UPDATE tbl_sessions SET validity = false WHERE time_out = NULL";
+    $stmt = $pdo->prepare($$sql_invalidate_sessions);
+    $stmt->execute();
+  }
+}
 
 if (isset($_POST['time_in'])) {
   open_session($_POST['student_id']);
