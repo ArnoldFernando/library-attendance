@@ -20,7 +20,7 @@ startSystem();
 </head>
 
 <body>
-  <h1>Library Attendance</h1>
+  <h1 class="text-warning">Library Attendance</h1>
   <form method="post">
     <label for="student_id">Enter Student ID:</label>
     <input type="text" name="student_id" id="student_id" placeholder="e.g., S001">
