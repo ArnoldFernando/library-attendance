@@ -1,15 +1,11 @@
 <?php
-require('./inc/dbconn/dbconn.php');
+require('./main.php');
+require('./inc/dbconn/db-library.conn.php');
+require('./helpers/queries/db-library/tbl_students.queries.php');
+require('./helpers/queries/db-library/tbl_sessions.queries.php');
+require('./session.php');
 
-function get_active_session_by_student_id($student_id)
-{
-  require('./inc/dbconn/dbconn.php');
-  $sql = "SELECT * FROM tbl_sessions WHERE student_id = :student_id AND validity = true";
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(':student_id', $student_id, PDO::PARAM_STR);
-  $stmt->execute();
-  return $stmt->fetch(PDO::FETCH_ASSOC) ?? null;
-}
+startSystem();
 
 ?>
 
