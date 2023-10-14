@@ -60,8 +60,8 @@ startSystem();
           <td>
             <form action="session.php" method="post">
               <input type="hidden" name="student_id" value="<?= $student['student_id'] ?>">
-              <?= $time_in_button ?>
-              <?= $time_out_button ?>
+                <button <?= (hasActiveSession($search_id) ? "disabled" : "") ?> type="submit" name="time_in">Time In</button>
+                <button <?= (!hasActiveSession($search_id) ? "disabled" : "") ?> type="submit" name="time_out">Time Out</button>
             </form>
           </td>
         </tr>
