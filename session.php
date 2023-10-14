@@ -1,11 +1,13 @@
 <?php
-require('./inc/dbconn/dbconn.php');
+require('./inc/dbconn/db-library.conn.php');
 
 date_default_timezone_set('Asia/Manila');
 
+
+
 function open_session($student_id)
 {
-  require('./inc/dbconn/dbconn.php');
+  require('./inc/dbconn/db-library.conn.php');
   $currentDateTime = date('Y-m-d H:i:s');
   $randomBytes = random_bytes(12);
   $session_id = bin2hex($randomBytes);
@@ -19,7 +21,7 @@ function open_session($student_id)
 
 function close_session($student_id)
 {
-  require('./inc/dbconn/dbconn.php');
+  require('./inc/dbconn/db-library.conn.php');
   $currentDateTime = date('Y-m-d H:i:s'); //fix
   $sql = "SELECT * FROM tbl_sessions WHERE student_id = :student_id AND validity = true";
   $stmt = $pdo->prepare($sql);
@@ -49,6 +51,7 @@ function close_session($student_id)
     $stmt->execute();
   }
 }
+
 function invalidateSessionsAt($closing_time)
 {
   require('./inc/dbconn/db-library.conn.php');
