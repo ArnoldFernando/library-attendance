@@ -29,6 +29,7 @@ This PHP Attendance System is a web-based application designed to manage student
    ```bash
    git clone https://github.com/yourusername/php-attendance-system.git
 
+2. Import the sql script in mysql. 
 
 This is a basic template. You can expand on it by providing more specific details about your system, its functionality, and any additional features or customization you've implemented. Additionally, you can add more information about your project's structure, usage instructions, and any other relevant details.
 
