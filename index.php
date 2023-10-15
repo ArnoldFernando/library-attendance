@@ -108,8 +108,15 @@ startSystem();
         ?>
           <tr>
             <td><?php echo $active_session['session_id']; ?></td>
+              <td><?php echo $active_session['student_id']; ?></td>
             <td><?php echo $active_session['first_name']; ?></td>
             <td><?php echo  "<strong class='session-sec'>" .  $active_session['session_seconds'] . "</strong> seconds" ?></td>
+              <td>
+              <form action="session.php" method="post">
+                <input type="hidden" name="student_id" value="<?= $student['student_id'] ?>">
+                <button type="submit" name="time_out">Time Out</button>
+              </form>
+              </td>
             <!-- echo "<div class='session-details'>Session ID: " . $active_session['session_id'] . "</div>";
             echo "<div class='student-name'>Student name: " . $active_session['first_name'] . " " . $active_session['last_name'] . "</div>";
             echo "<div class='session-duration'>Student session duration in seconds: <strong class='session-sec'>" .  $active_session['session_seconds'] . "</strong> seconds</div>";
