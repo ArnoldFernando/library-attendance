@@ -60,49 +60,56 @@ startSystem();
           </tr>
         </table>
 
-
-        <div class="active-session">
-
-
-          <table>
-            <tr>
-              <th>Student Id</th>
-              <th>Student Name</th>
-              <th>Student Session</th>
-            </tr>
-
         <?php
       }
     }
-
-    echo "<h2>Active Sessions</h2>";
-
-    $active_sessions = getAllActiveSessions();
         ?>
 
-
         <?php
-        // print_r($active_sessions);
-        foreach ($active_sessions as $active_session) {
-          // Process each session
-        ?>
-          <tr>
-            <td><?php echo $active_session['session_id']; ?></td>
-            <td><?php echo $active_session['first_name']; ?></td>
-            <td><?php echo  "<strong class='session-sec'>" .  $active_session['session_seconds'] . "</strong> seconds" ?></td>
-            <!-- echo "<div class='session-details'>Session ID: " . $active_session['session_id'] . "</div>";
-            echo "<div class='student-name'>Student name: " . $active_session['first_name'] . " " . $active_session['last_name'] . "</div>";
-            echo "<div class='session-duration'>Student session duration in seconds: <strong class='session-sec'>" .  $active_session['session_seconds'] . "</strong> seconds</div>";
-             -->
-        <?php
-        }
       } catch (PDOException $e) {
         die("Connection failed: " . $e->getMessage());
       }
         ?>
 
-          </table>
-        </div>
+      <div class="active-session">
+        <table>
+          <tr>
+            <th>Student Id</th>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Student Session</th>
+            <th>Time Out</th>
+          </tr>
+
+
+          <?php
+          echo "<h2>Active Sessions</h2>";
+
+          $active_sessions = getAllActiveSessions();
+          // print_r($active_sessions);
+          foreach ($active_sessions as $active_session) {
+            // Process each session
+          ?>
+            <tr>
+              <td><?php echo $active_session['session_id']; ?></td>
+              <td><?php echo $active_session['student_id']; ?></td>
+              <td><?php echo $active_session['first_name']; ?></td>
+              <td><?php echo  "<strong class='session-sec'>" .  $active_session['session_seconds'] . "</strong> seconds" ?></td>
+              <td>
+              <form action="session.php" method="post">
+                <input type="hidden" name="student_id" value="<?= $student['student_id'] ?>">
+                <button type="submit" name="time_out">Time Out</button>
+              </form>
+              </td>
+              <!-- echo "<div class='session-details'>Session ID: " . $active_session['session_id'] . "</div>";
+              echo "<div class='student-name'>Student name: " . $active_session['first_name'] . " " . $active_session['last_name'] . "</div>";
+              echo "<div class='session-duration'>Student session duration in seconds: <strong class='session-sec'>" .  $active_session['session_seconds'] . "</strong> seconds</div>";
+              -->
+          <?php
+          }
+          ?>
+        </table>
+      </div>
 
 
         <script src="./script.js" defer></script>
