@@ -82,6 +82,26 @@ startSystem();
 
 
         <?php
+      } catch (PDOException $e) {
+        die("Connection failed: " . $e->getMessage());
+      }
+        ?>
+
+      <div class="active-session">
+        <table>
+          <tr>
+            <th>Student Id</th>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Student Session</th>
+            <th>Time Out</th>
+          </tr>
+
+
+          <?php
+          echo "<h2>Active Sessions</h2>";
+
+          $active_sessions = getAllActiveSessions();
         // print_r($active_sessions);
         foreach ($active_sessions as $active_session) {
           // Process each session
